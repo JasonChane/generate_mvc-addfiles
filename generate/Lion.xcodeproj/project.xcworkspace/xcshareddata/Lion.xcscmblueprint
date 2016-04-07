@@ -1,0 +1,27 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8ce38c0a-4bd6-4a33-8a94-366c07f5a597++3832",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "8ce38c0a-4bd6-4a33-8a94-366c07f5a597++3832" : {
+      "DVTSourceControlWorkingCopyRepositoryBranchesLocationKey" : "branches",
+      "DVTSourceControlWorkingCopyRepositoryTagsLocationKey" : "tags",
+      "DVTSourceControlWorkingCopyRepositoryPrimaryBranchLocationKey" : "trunk"
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8ce38c0a-4bd6-4a33-8a94-366c07f5a597++3832" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1E246B9E-85CE-4E2F-A2BD-0CD743C63398",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8ce38c0a-4bd6-4a33-8a94-366c07f5a597++3832" : "generate_mvc&addfiles\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Lion",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "generate\/Lion.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.1.25\/fangchou",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8ce38c0a-4bd6-4a33-8a94-366c07f5a597++3832"
+    }
+  ]
+}

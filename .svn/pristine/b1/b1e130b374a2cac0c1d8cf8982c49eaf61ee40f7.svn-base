@@ -1,0 +1,131 @@
+//
+//  Cus_WriteMethod_In.m
+//  Lion
+//
+//  Created by Rich on 16/4/6.
+//  Copyright © 2016年 JoySim. All rights reserved.
+//
+
+#import "Cus_WriteMethod_In.h"
+#import "NSString+LionExtension.h"
+#import "Cus_Generate_Model.h"
+
+static NSString *servicePath = @"Model/NetworkModel/Service/UserService.h";
+
+@implementation Cus_WriteMethod_In
+
++ (NSURL *)needWriteInFilePath:(NSString*)filePath
+{
+    NSString *path = [NSString stringWithFormat:@"%@/%@",outputPath_define,filePath];
+    NSString *pathUrl = [NSString stringWithFormat:@"file://%@",path];
+    NSURL *url = [NSURL URLWithString:pathUrl];
+    return url;
+
+}
+
++ (void)writeMethodIn
+{
+    [self writeMethodIn_h];
+    [self writeMethodIn_m];
+    
+}
+
++ (void)writeMethodIn_h
+{
+    NSURL *url = [self needWriteInFilePath:servicePath];
+    
+    NSError *error;
+    NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+    
+    Cus_Generate_Model *model = [Cus_Generate_Model shareInstance];
+    NSMutableString *paramterStr = [self createMutableParamterMethodStr:model.requestParamter isInvoke:NO];
+    
+    NSMutableString *code = [NSMutableString string];
+    code.LINE( @"/* " );
+    code.LINE( @"   AssissteOrder request " );
+    code.LINE( @"*/ " );
+    code.LINE( @"- (void)get%@%@ withSuccess:(ResponseObjectResult)success failure:(FailureBlock)failure;",model.vcName, paramterStr);
+//    code.LINE( @"-(void)getAssisteOrderWithPageSize:(NSInteger)pageSize withStatus:(NSInteger)status withPage:(NSInteger)page withSuccess:(ResponseObjectResult)success failure:(FailureBlock)failure; " );
+    code.LINE( @" " );
+    code.LINE( @"@end " );
+
+
+    
+    NSString *newContent = [content stringByReplacingOccurrencesOfString:@"@end" withString:code];
+    
+    BOOL result = [newContent writeToFile:url.path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (result)
+    {
+        
+        
+    }
+    
+}
+
++ (void)writeMethodIn_m
+{
+    NSString *path_m = [servicePath stringByReplacingOccurrencesOfString:@".h" withString:@".m"];
+    
+    NSURL *url = [self needWriteInFilePath:path_m];
+    Cus_Generate_Model *model = [Cus_Generate_Model shareInstance];
+    NSMutableString *paramterStr = [self createMutableParamterMethodStr:model.requestParamter isInvoke:NO];
+    
+    NSError *error;
+    NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+    
+    NSMutableString *code = [NSMutableString string];
+    code.LINE( @"/* " );
+    code.LINE( @"   AssissteOrder request " );
+    code.LINE( @"*/ " );
+    code.LINE( @"- (void)get%@%@ withSuccess:(ResponseObjectResult)success failure:(FailureBlock)failure",model.vcName, paramterStr);
+    code.LINE( @"{ " );
+    code.LINE( @"    NetworkService * service = [[NetworkService alloc]init];" );
+    code.LINE( @"    NSMutableDictionary* para = [service createParameterDictionary];" );
+    code.LINE( @"    NSDictionary* parameter = [service packupParameterWithDictionary:para];" );
+    code.LINE( @"    NSString* url = [service hostURLWithUri:@\"%@\"];",moduleName_define );
+    code.LINE( @"    [service POST:url parameters:parameter responseClass:[ResponseObject class] success:success failure:failure];" );
+    code.LINE( @"} " );
+    code.LINE( @"" );
+    code.LINE( @"@end " );
+    
+    NSString *newContent = [content stringByReplacingOccurrencesOfString:@"@end" withString:code];
+    
+    BOOL result = [newContent writeToFile:url.path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (result)
+    {
+        
+        
+    }
+    
+}
+
++ (NSMutableString*)createMutableParamterMethodStr:(NSDictionary*)paramterDict isInvoke:(BOOL)isInvoke
+{
+    NSMutableString *paramterStr = [NSMutableString string];
+    NSArray *allKeys = [paramterDict allKeys];
+    NSString *with = @"With";
+    for (int i = 0;i < allKeys.count;i ++)
+    {
+        NSString *key = allKeys[i];
+        if (i != 0)
+        {
+            with = @"with";
+        }
+        
+        NSString *subStr;
+        if (isInvoke)
+        {
+            subStr = [NSString stringWithFormat:@"%@%@:_%@ ",with,[key upFirstChar],key];
+        }
+        else
+        {
+            subStr = [NSString stringWithFormat:@"%@%@:(%@)%@ ",with,[key upFirstChar],[paramterDict valueForKey:key],key];
+        }
+        
+        [paramterStr appendString:subStr];
+    }
+    [paramterStr deleteCharactersInRange:NSMakeRange(paramterStr.length - 1, 1)];
+    return paramterStr;
+}
+
+@end

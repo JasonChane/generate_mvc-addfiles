@@ -1,0 +1,23 @@
+//
+// Prefix header for all source files of the 'generate' target in the 'scaffold' project
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+
+#define xcodeproj_url [NSURL URLWithString:@"file:///Users/rich/Desktop/ifangchou_11.24/ifangchou.xcodeproj/project.pbxproj"]
+
+#define outputPath_define @"/Users/rich/Desktop/ifangchou_11.24/ifangchou"
+
+#define moduleName_define @"AssisteOrder"
+
+#define prefixFile @"ifangchou"
+
+#define cellItemColumn 2
+
+#define cellItemRow 3
+
+#endif
+
+///Users/rich/Desktop/ifangchou_11.24/ifangchou.xcodeproj
+///Users/rich/Desktop/test_pro_comparePro/Example.xcodeproj

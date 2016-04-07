@@ -1,0 +1,39 @@
+{
+    "moduleName"  : "AssisteOrder",
+    
+    "Type" : "0",
+    
+    "outPutPath" : "/Users/rich/Desktop/ifangchou_11.24 3/ifangchou",
+    
+    "vcName"  : "AssisteOrder",
+    
+    "enum"  : "FCAutoCoding",
+    
+    "prefix"  : "FC",
+    
+    "shortname"  : "RC",
+    
+    "server"  : "http://www.fc.com",
+    
+    "author" : "RichChane",
+
+    
+    "cell_h" : {
+        "remindTitle" : "NSString",
+        "deadLine" : "NSString",
+        "chooseType" : "NSString",
+        "chooseTypeImg" : "UIImage" ,
+        "proTitle" : "NSString"
+    },
+
+    "cell_m" : {
+        "remindTitleLabel" : "UILabel",
+        "deadLineLabel" : "UILabel",
+        "chooseTypeLabel" : "UILabel",
+        "chooseTypeImgV" : "UIImageView" ,
+        "proTitleLabel" : "UILabel"
+
+    }
+
+    
+}
